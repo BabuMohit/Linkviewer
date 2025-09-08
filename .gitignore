@@ -30,5 +30,11 @@ Thumbs.db
 screenshots/
 temp/
 
-# Windows batch files (optional)
+# Archive and documentation folders
+archive/
+screenshot-v2.0/
+*.docs.md
+allreadme.md
+
+# Windows batch files (keep run_server.bat)
 # *.bat

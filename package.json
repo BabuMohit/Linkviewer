@@ -1,14 +1,16 @@
 {
-  "name": "screenshot-service",
-  "version": "1.0.0",
-  "description": "Screenshot service for Chrome extension",
+  "name": "website-screenshot-carousel",
+  "version": "2.0.0",
+  "description": "Enhanced Chrome extension for previewing website links in a carousel with search and resize features",
   "main": "server.js",
   "scripts": {
-    "start": "node server.js"
+    "start": "node server.js",
+    "dev": "node server.js"
   },
+  "keywords": ["chrome-extension", "screenshot", "carousel", "link-preview", "academic", "research"],
   "dependencies": {
     "express": "^4.17.1",
     "puppeteer": "^22.8.2",
     "cors": "^2.8.5"
   }
-} 
+}

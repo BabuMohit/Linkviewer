@@ -10,6 +10,11 @@
             padding: 20px;
             font-family: Arial, sans-serif;
             background: #f5f5f5;
+            position: relative;
+            min-width: 400px;
+            max-width: 1200px;
+            transition: width 0.05s ease-out;
+            overflow: hidden;
         }
 
         .carousel-container {
@@ -90,9 +95,10 @@
         }
 
         .zoom-controls {
-            position: absolute;
+            position: sticky;
             bottom: 20px;
             right: 20px;
+            float: right;
             display: flex;
             align-items: center;
             z-index: 20;
@@ -102,6 +108,8 @@
             box-shadow: 0 2px 8px rgba(0,0,0,0.1);
             font-size: 14px;
             color: #666;
+            margin-left: auto;
+            width: fit-content;
         }
 
         .nav-button {
@@ -350,34 +358,273 @@
             width: 16px;
             height: 16px;
         }
+
+        .top-controls {
+            display: flex;
+            gap: 10px;
+            margin-bottom: 10px;
+        }
+
+        .view-all-btn,
+        .link-names-btn {
+            display: flex;
+            align-items: center;
+            gap: 5px;
+            padding: 6px 12px;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+            background: white;
+            cursor: pointer;
+            font-size: 14px;
+            color: #333;
+        }
+
+        .view-all-btn:hover,
+        .link-names-btn:hover {
+            background: #f0f0f0;
+        }
+
+        .view-all-btn svg,
+        .link-names-btn svg {
+            width: 16px;
+            height: 16px;
+        }
+
+        .all-links-modal {
+            display: none;
+            position: absolute;
+            top: 100%;
+            left: 0;
+            right: 0;
+            max-height: 300px;
+            overflow-y: auto;
+            background: white;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+            z-index: 1000;
+            margin-top: 5px;
+            padding: 10px;
+        }
+
+        .all-links-modal.show {
+            display: block;
+        }
+
+        .all-links-item {
+            padding: 8px;
+            border-bottom: 1px solid #eee;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .all-links-item:last-child {
+            border-bottom: none;
+        }
+
+        .all-links-text {
+            flex: 1;
+            margin-right: 10px;
+            word-break: break-word;
+        }
+
+        .all-links-url {
+            color: #666;
+            font-size: 12px;
+            word-break: break-all;
+        }
+
+        .link-names-btn {
+            display: flex;
+            align-items: center;
+            gap: 5px;
+            padding: 6px 12px;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+            background: white;
+            cursor: pointer;
+            font-size: 14px;
+            color: #333;
+        }
+
+        .link-names-btn svg {
+            width: 16px;
+            height: 16px;
+        }
+
+        .link-names-btn .swap-icon {
+            width: 14px;
+            height: 14px;
+            margin-left: 2px;
+            opacity: 0.6;
+        }
+
+        .link-names-btn:hover {
+            background: #f0f0f0;
+        }
+
+        .link-names-btn:hover .swap-icon {
+            opacity: 1;
+        }
+
+        .search-container {
+            position: relative;
+            flex: 1;
+            max-width: 300px;
+        }
+
+        .search-input {
+            width: 100%;
+            padding: 8px 12px;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+            font-size: 14px;
+            outline: none;
+            transition: border-color 0.2s;
+        }
+
+        .search-input:focus {
+            border-color: #2196f3;
+        }
+
+        .search-results {
+            display: none;
+            position: absolute;
+            top: 100%;
+            left: 0;
+            right: 0;
+            max-height: 200px;
+            overflow-y: auto;
+            background: white;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+            z-index: 1000;
+            margin-top: 4px;
+        }
+
+        .search-result-item {
+            padding: 8px 12px;
+            cursor: pointer;
+            border-bottom: 1px solid #eee;
+        }
+
+        .search-result-item:last-child {
+            border-bottom: none;
+        }
+
+        .search-result-item:hover {
+            background: #f5f5f5;
+        }
+
+        .all-links-dropdown {
+            max-height: 300px;
+            overflow-y: auto;
+            background: white;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+        }
+
+        .all-links-item {
+            padding: 10px 15px;
+            border-bottom: 1px solid #eee;
+            cursor: pointer;
+        }
+
+        .all-links-item:hover {
+            background: #f5f5f5;
+        }
+
+        .all-links-item:last-child {
+            border-bottom: none;
+        }
+
+        .all-links-text {
+            font-size: 14px;
+            color: #333;
+            margin-bottom: 4px;
+        }
+
+        .all-links-url {
+            font-size: 12px;
+            color: #666;
+            word-break: break-all;
+        }
+
+        /* Custom scrollbar for dropdowns */
+        .search-results::-webkit-scrollbar,
+        .all-links-dropdown::-webkit-scrollbar {
+            width: 8px;
+        }
+
+        .search-results::-webkit-scrollbar-track,
+        .all-links-dropdown::-webkit-scrollbar-track {
+            background: #f1f1f1;
+            border-radius: 4px;
+        }
+
+        .search-results::-webkit-scrollbar-thumb,
+        .all-links-dropdown::-webkit-scrollbar-thumb {
+            background: #888;
+            border-radius: 4px;
+        }
+
+        .search-results::-webkit-scrollbar-thumb:hover,
+        .all-links-dropdown::-webkit-scrollbar-thumb:hover {
+            background: #555;
+        }
+
+        /* Replace the resize handle styles */
+        .resize-handle {
+            position: fixed;
+            top: 50%;
+            left: 0;
+            width: 12px;
+            height: 40px;
+            background: transparent;
+            cursor: w-resize;
+            z-index: 1000;
+            transform: translateY(-50%);
+            touch-action: none;
+        }
+
+        .resize-handle::after {
+            content: '';
+            position: absolute;
+            left: 4px;
+            top: 50%;
+            transform: translateY(-50%);
+            width: 4px;
+            height: 24px;
+            background: #2196f3;
+            border-radius: 2px;
+            opacity: 0.5;
+            transition: opacity 0.2s;
+        }
+
+        .resize-handle:hover::after,
+        .resize-handle:active::after {
+            opacity: 1;
+            width: 6px;
+        }
     </style>
 </head>
 <body>
     <div class="controls-container">
         <div class="filter-bar">
-            <button class="filter-toggle" id="filterToggle">
-                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                    <path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"/>
-                    <circle cx="12" cy="12" r="3"/>
-                </svg>
-                <span>Filters</span>
-            </button>
-            <div id="filterControls" class="filter-controls">
-                <div class="filter-group">
-                    <label class="filter-option">
-                        <input type="checkbox" id="externalLinks"> External Links
-                    </label>
-                    <label class="filter-option">
-                        <input type="checkbox" id="internalLinks"> Internal Links
-                    </label>
-                    <select class="filter-select" id="linkType">
-                        <option value="all">All Types</option>
-                        <option value="pages">Web Pages</option>
-                        <option value="images">Images</option>
-                        <option value="docs">Documents</option>
-                        <option value="media">Media</option>
-                    </select>
+            <div class="top-controls">
+                <div class="search-container">
+                    <input type="text" id="searchInput" class="search-input" placeholder="Search references...">
+                    <div id="searchResults" class="search-results"></div>
                 </div>
+                <button class="view-all-btn" id="viewAllBtn">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <path d="M4 6h16M4 12h16M4 18h16"/>
+                    </svg>
+                    <span>View All Links</span>
+                </button>
             </div>
         </div>
 
@@ -393,6 +640,20 @@
                     <input type="number" id="customLinkCount" min="1" max="100" value="5" 
                         style="width: 60px; padding: 4px; border: 1px solid #ddd; border-radius: 4px;">
                 </div>
+                <button class="link-names-btn" id="linkNamesBtn">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <path d="M17 1l4 4-4 4"/>
+                        <path d="M3 11V9a4 4 0 0 1 4-4h14"/>
+                        <path d="M7 23l-4-4 4-4"/>
+                        <path d="M21 13v2a4 4 0 0 1-4 4H3"/>
+                    </svg>
+                    <span>Link Numbers</span>
+                    <svg class="swap-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <path d="M7 16l-4-4 4-4"/>
+                        <path d="M21 12H3"/>
+                        <path d="M17 8l4 4-4 4"/>
+                    </svg>
+                </button>
             </div>
             <div class="controls-right">
                 <div class="link-jumper" id="linkJumper">
@@ -411,6 +672,8 @@
         <div id="preview-counter"></div>
     </div>
 
+    <div class="resize-handle"></div>
+
     <script src="popup.js"></script>
 </body>
-</html> 
+</html>

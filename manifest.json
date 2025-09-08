@@ -1,8 +1,8 @@
 {
   "manifest_version": 3,
   "name": "Website Screenshot Carousel",
-  "version": "1.0",
-  "description": "View website screenshots in a carousel format",
+  "version": "2.0",
+  "description": "View screenshots of referenced links and citations in a carousel format",
   "permissions": [
     "activeTab",
     "scripting",
@@ -26,4 +26,4 @@
   "content_security_policy": {
     "extension_pages": "script-src 'self'; object-src 'self'; connect-src 'self' http://localhost:5000"
   }
-} 
+}
